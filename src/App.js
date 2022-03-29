@@ -1,6 +1,8 @@
 import './App.css';
 import { useEffect, useState } from 'react';
 import Characters from './Components/Characters';
+import Form from './Components/Form'
+import { Routes, Route, Link } from 'react-router-dom'
 
 function App() {
 
@@ -20,9 +22,10 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <Characters key= "key" characters={characters} removeCharacter={removeCharacter}/>
-    </div>
+    <Routes>
+      <Route path="/" element={<Characters key= "key" characters={characters} removeCharacter={removeCharacter} />}/>
+      <Route path="/cards" element={<Form />} />
+    </Routes>
   );
 }
 

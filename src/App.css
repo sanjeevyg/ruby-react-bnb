@@ -37,7 +37,6 @@
   }
 }
 
-
 .cards {
   display: flex;
   flex-direction: column;
@@ -49,3 +48,36 @@
   padding: .5rem 2rem;
   font-weight: bold;
 }
+
+.bookCard {
+  display: flex;
+  background-color: #61dafb;
+  flex-direction: column;
+  text-align: center;
+  margin: 2rem;
+  width: 20rem;
+  box-shadow: 1rem 1rem rgb(189, 122, 122, .2);
+}
+
+.cardContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.formContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 5rem;
+
+}
+
+.formContainer label {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.formContainer input {
+  margin-right: .7rem;
+  margin-left: .2rem;
+}
+

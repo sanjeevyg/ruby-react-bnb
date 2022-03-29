@@ -14,11 +14,8 @@ export default function Characters(props) {
       setLike(likeCount - 1)
     }
 
-    
-  
-
     const renderCharacters = () => props.characters.map(character => {
-    
+  
     return (
     <>
       <h1>{character.name}</h1>
