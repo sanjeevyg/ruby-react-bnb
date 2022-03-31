@@ -14,12 +14,12 @@ function App() {
     .then(({results}) => setCharacters(results))
   }
 
-  useEffect(getCharacter, [])
+  // useEffect(getCharacter, [])
 
-  const removeCharacter = (characterD) => {
-    const newCharacters = characters.filter(character => character !== characterD)
-    setCharacters(newCharacters)
-  }
+  // const removeCharacter = (characterD) => {
+  //   const newCharacters = characters.filter(character => character !== characterD)
+  //   setCharacters(newCharacters)
+  // }
 
   return (
     <Routes>
