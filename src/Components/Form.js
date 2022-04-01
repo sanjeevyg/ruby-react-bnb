@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
+import Filter from './Filter.js'
 
 export default function Form() {
     const [title, setTitle] = useState('')
@@ -16,10 +17,8 @@ export default function Form() {
             .then(console.log)
     }
 
-    
-
     const renderBook = () => {
-        const card = books.map(book => {
+        const card = filteredBooks().map(book => {
         return (
             <div className='bookCard'>
                 <h1>{book.title}</h1>
@@ -28,6 +27,13 @@ export default function Form() {
         })
         return card
     }
+
+    const filteredBooks = () => {
+        return books.filter(book => {
+            return (book.title.toLowerCase().includes(title.toLocaleLowerCase()))
+    })}
+
+    console.log(filteredBooks())
 
     const getCommenter = () => {
         fetch('http://localhost:3000/comments')
@@ -38,6 +44,7 @@ export default function Form() {
     console.log(comments)
 
     const renderCommenter = () => comments.map(comment => {
+
         return <option key={comment.id} value={comment.id}>{comment.commenter}</option>
     })
 
@@ -65,8 +72,20 @@ export default function Form() {
         }
     }
 
+    const handleFilter = (event)  => {
+        const title = event.target.value
+        setTitle(title)
+    }
+
+   
+
+    console.log(title)
+
   return (
       <>
+        <div className="search-by-filter">
+            <Filter title={title} handleFilter={handleFilter}/>
+        </div>
         <div className='cardContainer'>{renderBook()}</div>
         <form className='formContainer' onSubmit={addCard}>
             <label htmlFor='title'>Title</label>

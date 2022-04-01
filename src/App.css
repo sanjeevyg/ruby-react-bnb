@@ -81,3 +81,16 @@
   margin-left: .2rem;
 }
 
+.search-by-filter {
+  display: flex;
+  justify-content: center;
+  margin-top: 5rem;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.search-by-filter input {
+  margin-left: 1rem;
+  font-family: 'Times New Roman', Times, serif;
+  text-align: center;
+}
+
