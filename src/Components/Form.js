@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import Filter from './Filter.js'
+import Sort from './Sort.js';
 
 export default function Form() {
     const [title, setTitle] = useState('')
     const [genre, setGenre] = useState('')
     const [comments, setComments] = useState([])
     const [selectedComment, setSelectedComment] = useState('')
-    // const [body, setBody] = useState('')
     const [books, setBooks] = useState([])
+    const [order, setOrder] = useState('')
 
 
     const getBooks = () =>  {
@@ -28,10 +29,47 @@ export default function Form() {
         return card
     }
 
+    // const handleOrder = () => {
+    //     order === 'ascending'? 
+    // }
+    const sortByAscendingOrder = (a, b) => {
+        if(a.title > b.title) {
+            return -1
+        } else if ( a.title < b.title) {
+            return 1
+        } else if( a.title === b.title) {
+            return 0
+        }
+    }
+
+    const  sortByDescendingOrder = (a, b) => {
+        if(a.title > b.title) {
+            return 1
+        } else if ( a.title < b.title) {
+            return -1
+        } else if( a.title === b.title) {
+            return 0
+        }
+    }
+
+
+    const byOrder = (a, b) => {
+        if(order === 'ascending') {
+            return sortByAscendingOrder (a, b)
+        } else if(order === 'descending') {
+            return sortByDescendingOrder(a, b)
+        }
+    }
+
+    const newBooks = () => books.filter(book => {
+        return (book.title.toLowerCase().includes(title.toLocaleLowerCase()))
+    })
+
     const filteredBooks = () => {
-        return books.filter(book => {
-            return (book.title.toLowerCase().includes(title.toLocaleLowerCase()))
-    })}
+        return newBooks().sort(byOrder)
+    }
+
+    console.log(filteredBooks())
 
     console.log(filteredBooks())
 
@@ -77,6 +115,12 @@ export default function Form() {
         setTitle(title)
     }
 
+
+    const handleOrder = (event)  => {
+        const order = event.target.value
+        setOrder(order)
+    }
+
    
 
     console.log(title)
@@ -84,7 +128,10 @@ export default function Form() {
   return (
       <>
         <div className="search-by-filter">
-            <Filter title={title} handleFilter={handleFilter}/>
+            <Filter title={title} handleFilter={handleFilter} />
+        </div>
+        <div className="search-by-filter">
+            <Sort order={order} handleOrder={handleOrder}/>
         </div>
         <div className='cardContainer'>{renderBook()}</div>
         <form className='formContainer' onSubmit={addCard}>
